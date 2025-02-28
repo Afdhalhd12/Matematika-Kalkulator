@@ -79,7 +79,7 @@
 
                 <div class="mb-3">
                     <label class="form-label">Ratio (r)</label>
-                    <input type="number" class="form-control"  id="r" placeholder="Masukkan beda">
+                    <input type="number" class="form-control"  id="r" placeholder="Masukkan ratio">
                 </div>
 
                 <button type="button" class="btn btn-primary w-100" onclick="hitung()">Calculate</button>
@@ -99,7 +99,7 @@
         let r = parseFloat(document.getElementById("r").value);
 
         if (Math.abs(r) >= 1) {
-                document.getElementById("hasil").innerText = "Rasio harus |r| < 1!";
+                document.getElementById("hasil").innerText = "Ratio harus |r| < 1!";
                 return;
             }
 
