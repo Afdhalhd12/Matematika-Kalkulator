@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sequence Calculator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 600px;
+            margin-top: 30px;
+        }
+
+        .title {
+            font-size: 28px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .dropdown {
+            margin-bottom: 20px;
+        }
+
+        .card-header {
+            background-color: #0d6efd;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            padding: 10px;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .card {
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .form-control {
+            border-radius: 8px;
+        }
+
+        .btn-primary {
+            background-color: #0d6efd;
+            border: none;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="title">Aritmatika Suku Ke-Sn</div>
+
+    <div class="dropdown">
+        <select class="form-select" id="pageSelector" onchange="navigatePage()">
+            <option selected disabled>Pilih Halaman</option>
+            <option value="index.html">Aritmatika Suku Ke-Un</option>
+            <option value="index1.html">Aritmatika Suku Ke-Sn</option>
+            <option value="index2.html">Geometri Suku Ke-Un</option>
+            <option value="index3.html">Geometri Suku Ke-Sn</option>
+            <option value="index4.html">Geometri Suku Tak Hingga</option>
+        </select>
+    </div>
+    
+
+    <div class="card">
+        <div class="card-header">Aritmatika Jumlah Suku Ke-Sn</div>
+        <div class="card-body">
+            <form>
+                <div class="mb-3">
+                    <label class="form-label">Suku Pertama (a)</label>
+                    <input type="number" class="form-control" id = "a" placeholder="Masukkkan suku pertama">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Beda (b)</label>
+                    <input type="number" class="form-control"  id="b" placeholder="Masukkan beda">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Suku ke (n)</label>
+                    <input type="number" class="form-control" id="n" placeholder="Masukkan suku ke-n">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Gunakan metode perhitungan:</label>
+                    <select class="form-select" id="method">
+                        <option value="rumus1">Sn = (n / 2) * (a + Un)</option>
+                        <option value="rumus2">Sn = (n / 2) * (2 * a + (n - 1) * b)</option>
+                    </select>
+                </div>
+
+                <button type="button" class="btn btn-primary w-100" onclick="hitung()">Calculate</button>
+                <button type="button" class="btn btn-danger w-100 mt-2" onclick="reset()">Reset</button>
+                <div class="mt-4">
+                    <h5>Hasil:</h5>
+                    <p>Suku ke-Sn (Sn): <span id="hasil-Sn">-</span></p>
+                </div>
+            </form>
+            
+        </div>
+    </div>
+</div>
+<script>
+    function hitung(){
+        let a = parseFloat(document.getElementById("a").value);
+        let b = parseFloat(document.getElementById("b").value);
+        let n = parseInt(document.getElementById("n").value);
+        let method = document.getElementById("method").value;
+        let Sn = 0;
+
+        if(method == "rumus1"){
+            let Un = a + (n - 1) * b;
+            Sn = (n / 2) * (a + Un);
+        }
+        else if(method == "rumus2"){
+            Sn = (n / 2) * (2 * a + (n - 1) * b);
+        }
+        
+
+        document.getElementById("hasil-Sn").innerText = Sn;
+    }
+
+    function navigatePage() {
+    let page = document.getElementById("pageSelector").value;
+    if (page) {
+        window.location.href = page; // Pindah ke halaman yang dipilih
+    }
+}
+
+function reset() {
+    document.getElementById("a").value = "";
+    document.getElementById("b").value = "";
+    document.getElementById("n").value = "";
+    document.getElementById("hasil-Sn").innerText = "-";
+}
+
+</script>
+</body>
+</html>
